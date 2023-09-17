@@ -1,9 +1,9 @@
 // (C) Copyright 2023 by CronoGames All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "GenItemMaster.h"
 #include "GenItemsContainer.generated.h"
 
 
@@ -11,6 +11,10 @@ UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class GENSURVIVAL_API UGenItemsContainer : public UActorComponent
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TArray<FGenItemInfo> Items;
 
 public:	
 	// Sets default values for this component's properties
@@ -23,6 +27,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+public:
+	UFUNCTION(BlueprintCallable)
+	bool FindEmptySlot(int32& EmptySlotIndex);
 
 		
 };

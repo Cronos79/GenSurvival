@@ -11,6 +11,7 @@
 #include "Engine/LocalPlayer.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GenPlayerInventory.h"
 
 // Sets default values
 AGenPlayerCharacter::AGenPlayerCharacter()
@@ -47,7 +48,9 @@ AGenPlayerCharacter::AGenPlayerCharacter()
 	// Create 3rd person camera
 	ThirdPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("ThirdPersonCamera"));
 	ThirdPersonCameraComponent->SetupAttachment(CameraBoomComponent, USpringArmComponent::SocketName);
-	ThirdPersonCameraComponent->bUsePawnControlRotation = false; // Camera does not rotate relative to arm		
+	ThirdPersonCameraComponent->bUsePawnControlRotation = false; // Camera does not rotate relative to arm	
+
+	InventoryComponent = CreateDefaultSubobject<UGenPlayerInventory>(TEXT("Inventory"));
 }
 
 // Called when the game starts or when spawned
