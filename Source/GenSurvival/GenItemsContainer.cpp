@@ -31,23 +31,3 @@ void UGenItemsContainer::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 
 	// ...
 }
-
-bool UGenItemsContainer::FindEmptySlot(int32& EmptySlotIndex)
-{
-	EmptySlotIndex = 0;
-	bool bFoundEmptySlot = false;
-	int32 Counter = 0;
-	for (FGenItemInfo item : Items)
-	{
-		if (item.ItemID == 0)
-		{
-			EmptySlotIndex = Counter;
-			bFoundEmptySlot = true;
-			break;
-		}
-		Counter++;
-	}
-
-	return bFoundEmptySlot;
-}
-

@@ -7,7 +7,7 @@
 #include "GenItemsContainer.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable )
 class GENSURVIVAL_API UGenItemsContainer : public UActorComponent
 {
 	GENERATED_BODY()
@@ -27,10 +27,4 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-public:
-	UFUNCTION(BlueprintCallable)
-	bool FindEmptySlot(int32& EmptySlotIndex);
-
-		
 };

@@ -11,7 +11,7 @@
 #include "Engine/LocalPlayer.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "GenPlayerInventory.h"
+#include "GenPlayerController.h"
 
 // Sets default values
 AGenPlayerCharacter::AGenPlayerCharacter()
@@ -49,8 +49,6 @@ AGenPlayerCharacter::AGenPlayerCharacter()
 	ThirdPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("ThirdPersonCamera"));
 	ThirdPersonCameraComponent->SetupAttachment(CameraBoomComponent, USpringArmComponent::SocketName);
 	ThirdPersonCameraComponent->bUsePawnControlRotation = false; // Camera does not rotate relative to arm	
-
-	InventoryComponent = CreateDefaultSubobject<UGenPlayerInventory>(TEXT("Inventory"));
 }
 
 // Called when the game starts or when spawned
@@ -105,6 +103,9 @@ void AGenPlayerCharacter::Move(const FInputActionValue& Value)
 
 	if (Controller != nullptr)
 	{
+		AGenPlayerController* PC = (AGenPlayerController*)Controller;		
+		if (PC != nullptr && PC->bIsUIOpen) { return; }
+
 		// find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
@@ -123,6 +124,9 @@ void AGenPlayerCharacter::Move(const FInputActionValue& Value)
 
 void AGenPlayerCharacter::Look(const FInputActionValue& Value)
 {
+	AGenPlayerController* PC = (AGenPlayerController*)Controller;
+	if (PC != nullptr && PC->bIsUIOpen) { return; }
+
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
 

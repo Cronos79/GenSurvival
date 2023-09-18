@@ -13,5 +13,13 @@ UCLASS()
 class GENSURVIVAL_API AGenPlayerController : public APlayerController
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsUIOpen;
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void SetUIMode(bool GameAndUI);
 	
 };

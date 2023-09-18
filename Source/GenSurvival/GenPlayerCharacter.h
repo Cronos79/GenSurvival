@@ -12,7 +12,6 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 class USpringArmComponent;
-class UGenPlayerInventory;
 
 UCLASS(config=Game)
 class GENSURVIVAL_API AGenPlayerCharacter : public ACharacter
@@ -24,12 +23,9 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* CameraBoomComponent;
 
-	/** First person camera */
+	/** Third person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* ThirdPersonCameraComponent;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	UGenPlayerInventory* InventoryComponent;
 
 	/** MappingContext */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
