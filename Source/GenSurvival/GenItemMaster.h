@@ -55,6 +55,26 @@ enum class EWeaponType : uint8
 	RANGED		UMETA(DisplayName = "Ranged")
 };
 
+UENUM(BlueprintType)
+enum class EAnimationState : uint8
+{
+	DEFAULT		UMETA(DisplayName = "Default"),
+	HATCHET		UMETA(DisplayName = "Hatchet"),
+	BOW			UMETA(DisplayName = "Bow"),
+	SWORD		UMETA(DisplayName = "Sword")
+};
+
+USTRUCT(BlueprintType)
+struct FGenEquipableInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FName SocketName;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	EAnimationState AnimationState;
+};
+
 USTRUCT(BlueprintType)
 struct FGenItemInfo : public FTableRowBase
 {
@@ -96,7 +116,7 @@ struct FGenItemInfo : public FTableRowBase
 	int32 MaxAmmo;
 };
 
-UCLASS()
+UCLASS(BlueprintType)
 class GENSURVIVAL_API AGenItemMaster : public AActor
 {
 	GENERATED_BODY()
@@ -108,9 +128,5 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 };
